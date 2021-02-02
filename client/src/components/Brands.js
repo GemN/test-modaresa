@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useStore, useSelector } from 'react-redux';
 import { loadBrands } from '../actions/brands'
 import axios from 'axios';
-import $ from "jquery";
+import $ from 'jquery';
+import { SERVER_URL } from '../global';
 
 export const Brands = (props) => {
   const [brandToRemove, setBrandToRemove] = useState(null);
@@ -29,7 +30,7 @@ export const Brands = (props) => {
   const removeBrand = () => {
     const brand = brandToRemove;
     if (brand !== null) {
-      axios.delete('http://localhost:3000/brands', {
+      axios.delete(SERVER_URL + '/brands', {
         data: {
           brandId: brand._id
         }

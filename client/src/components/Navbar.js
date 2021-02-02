@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useStore } from 'react-redux';
 import { loadBrands } from '../actions/brands'
 import axios from 'axios';
-import $ from "jquery";
+import $ from 'jquery';
+import { SERVER_URL } from '../global';
 
 export const Navbar = () => {
 	const [brand, setBrand] = useState({
@@ -23,7 +24,7 @@ export const Navbar = () => {
 	]
 
 	useEffect(() => {
-    axios.get("http://localhost:3000/countries")
+    axios.get(SERVER_URL + '/countries')
       .then((result) => {
        	setCountries(result.data);
       })
@@ -33,7 +34,7 @@ export const Navbar = () => {
 	}, [])
 
 	const addNewBrand = () => {
-		axios.post("http://localhost:3000/brands", {
+		axios.post(SERVER_URL + '/brands', {
 			name: brand.name,
 			type: brand.type,
 			country: brand.country,
