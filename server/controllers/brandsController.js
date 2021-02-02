@@ -1,5 +1,6 @@
 const db = require('../db/connection');
 const brands = db.get('brands');
+const countriesTools = require('../tools/countriesTools');
 
 exports.get = function(req, res) {
 	brands.find().then((brands) => {
@@ -7,7 +8,6 @@ exports.get = function(req, res) {
     }).catch((error) => {
     	res.status(500);
     	res.send(error);
-    	console.log(error);
     });
 }
 
@@ -34,6 +34,11 @@ exports.create = function(req, res) {
 		{
 			res.status(400);
 			res.send("Missing brand country.");
+		}
+		else if (!countriesTools.countryExist(brand.country))
+		{
+			res.status(400);
+			res.send("Country does not exist.");
 		}
 		else
 		{
@@ -62,7 +67,6 @@ exports.delete = function(req, res) {
 		}).then((result) => {
 	        res.json({});
 	    }).catch((error) => {
-	    	console.log(error);
 	    	res.status(500);
 	    	res.send(error);
 	    });

@@ -78,20 +78,14 @@ export const Brands = (props) => {
         <tbody>
         {brands.map(brand => (
           <tr key={brand._id}>
-            <td>
-              {brand.name}
-            </td>
+            <td>{brand.name}</td>
             <td>
               {brand.type.map(type => (
                 <span key={type}>{type} </span>
                 ))}
             </td>
-            <td>
-              {brand.country}
-            </td>
-            <td>
-              {brand.description}
-            </td>
+            <td>{brand.country}</td>
+            <td>{brand.description}</td>
             <td>
               <button type="button" className="btn btn-danger" onClick={removeBrandConfirmation.bind(this, brand)}>Remove</button>
             </td>
@@ -99,7 +93,7 @@ export const Brands = (props) => {
         ))}
         </tbody>
       </table>
-      { removeBrandModal }
+      {removeBrandModal}
     </main>
   )
 }

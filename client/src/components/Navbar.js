@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useStore } from 'react-redux';
 import { loadBrands } from '../actions/brands'
 import axios from 'axios';
@@ -11,8 +11,26 @@ export const Navbar = () => {
 		country: '',
 		description: ''
 	});
+	const [countries, setCountries] = useState([])
 	const [error, setError] = useState('');
 	const store = useStore();
+	const types = [
+		'shoes',
+		'clothes',
+		'bags',
+		'hats',
+		'accessories'
+	]
+
+	useEffect(() => {
+    axios.get("http://localhost:3000/countries")
+      .then((result) => {
+       	setCountries(result.data);
+      })
+      .catch((error) => {
+      	console.log(error);
+      })
+  }, [])
 
 	const addNewBrand = () => {
 		axios.post("http://localhost:3000/brands", {
@@ -21,22 +39,22 @@ export const Navbar = () => {
 			country: brand.country,
 			description: brand.description
 		})
-      .then((result) => {
-       	setBrand({
-       		...brand,
-			name: '',
-			type: [],
-			country: '',
-			description: ''
-		});
-		setError('');
-		$('#addNewBrandModal').modal('hide');
+    .then((result) => {
+     	setBrand({
+       	...brand,
+				name: '',
+				type: [],
+				country: '',
+				description: ''
+			});
+			setError('');
+			$('#addNewBrandModal').modal('hide');
        	store.dispatch(loadBrands());
       })
-      .catch((error) => {
-      		setError(error.response.data);
-        }
-      )
+    .catch((error) => {
+    		setError(error.response.data);
+      }
+    )
 	}
 
 	const onChangeForm = (e) => { 
@@ -85,16 +103,18 @@ export const Navbar = () => {
 	        <div className="form-group">
 				    <label htmlFor="typeSelect">Type</label>
 				    <select multiple className="form-control" id="typeSelect" name="type" value={brand.type} onChange={onChangeForm}>
-				      <option>shoes</option>
-				      <option>clothes</option>
-				      <option>bags</option>
-				      <option>hats</option>
-				      <option>accessories</option>
+				      {types.map(type => (
+				      	<option key={type}>{type}</option>
+				      	))}
 				    </select>
 				  </div>
 				  <div className="form-group">
-				  	<label htmlFor="countryInput">Name</label>
-	        	<input type="text" id="countryInput" name="country" className="form-control" placeholder="Country" aria-label="Country" value={brand.country} onChange={onChangeForm}/>
+				  	<label htmlFor="countrySelect">Country</label>
+		    		<select className="form-control" id="countrySelect" name="country" value={brand.country} onChange={onChangeForm}>
+				      {countries.map(country => (
+				      	<option key={country.code}>{country.name}</option>
+				      	))}
+					</select>
 	        </div>
 	        <div className="from-group">
 	        	<label htmlFor="descriptionTextArea">Description</label>
@@ -122,7 +142,7 @@ export const Navbar = () => {
 		    </ul>
 	  	  </div>
 	    </nav>
-	    { addNewBrandModal }
+	    {addNewBrandModal}
 	</div>
   )
 }

@@ -10,7 +10,6 @@ export const loadBrands = () => {
   return (dispatch) => {
     axios.get("http://localhost:3000/brands")
       .then((result) => {
-      	console.log(result);
       	dispatch(getBrandsAction(result.data));
       })
       .catch((error) => {
