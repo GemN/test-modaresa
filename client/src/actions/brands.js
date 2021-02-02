@@ -1,6 +1,6 @@
 import axios from 'axios';
-export const GET_BRANDS = "getBrands";
 import { SERVER_URL } from '../global';
+export const GET_BRANDS = "getBrands";
 
 export const getBrandsAction = (res) => ({
   type: GET_BRANDS,
