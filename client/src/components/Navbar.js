@@ -68,6 +68,48 @@ export const Navbar = () => {
     color: 'red'
   }
 
+  const addNewBrandModal = <div className="modal fade" id="addNewBrandModal" tabIndex="-1" role="dialog" aria-labelledby="addNewBrandModalLabel" aria-hidden="true">
+	  <div className="modal-dialog" role="document">
+	    <div className="modal-content">
+	      <div className="modal-header">
+	        <h5 className="modal-title" id="addNewBrandModalLabel">Add new brand</h5>
+	        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div className="modal-body">
+	        <div className="from-group">
+	        	<label htmlFor="nameInput">Name</label>
+	        	<input type="text" id="nameInput" name="name" className="form-control" placeholder="Name" aria-label="Name" value={brand.name} onChange={onChangeForm}/>
+	        </div>
+	        <div className="form-group">
+				    <label htmlFor="typeSelect">Type</label>
+				    <select multiple className="form-control" id="typeSelect" name="type" value={brand.type} onChange={onChangeForm}>
+				      <option>shoes</option>
+				      <option>clothes</option>
+				      <option>bags</option>
+				      <option>hats</option>
+				      <option>accessories</option>
+				    </select>
+				  </div>
+				  <div className="form-group">
+				  	<label htmlFor="countryInput">Name</label>
+	        	<input type="text" id="countryInput" name="country" className="form-control" placeholder="Country" aria-label="Country" value={brand.country} onChange={onChangeForm}/>
+	        </div>
+	        <div className="from-group">
+	        	<label htmlFor="descriptionTextArea">Description</label>
+	        	<textarea name="description" id="descriptionTextArea" className="form-control" placeholder="Description" aria-label="Description" value={brand.description} onChange={onChangeForm}/>
+	      	</div>
+	      	<p style={errorStyle}>{error}</p>
+	      </div>
+	      <div className="modal-footer">
+	        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="button" className="btn btn-primary" onClick={addNewBrand}>Add</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
   return (
   	<div>
 	    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -80,47 +122,7 @@ export const Navbar = () => {
 		    </ul>
 	  	  </div>
 	    </nav>
-	    <div className="modal fade" id="addNewBrandModal" tabIndex="-1" role="dialog" aria-labelledby="addNewBrandModalLabel" aria-hidden="true">
-		  <div className="modal-dialog" role="document">
-		    <div className="modal-content">
-		      <div className="modal-header">
-		        <h5 className="modal-title" id="addNewBrandModalLabel">Add new brand</h5>
-		        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-		          <span aria-hidden="true">&times;</span>
-		        </button>
-		      </div>
-		      <div className="modal-body">
-		        <div className="from-group">
-		        	<label htmlFor="nameInput">Name</label>
-		        	<input type="text" id="nameInput" name="name" className="form-control" placeholder="Name" aria-label="Name" value={brand.name} onChange={onChangeForm}/>
-		        </div>
-		        <div className="form-group">
-					    <label htmlFor="typeSelect">Type</label>
-					    <select multiple className="form-control" id="typeSelect" name="type" value={brand.type} onChange={onChangeForm}>
-					      <option>shoes</option>
-					      <option>clothes</option>
-					      <option>bags</option>
-					      <option>hats</option>
-					      <option>accessories</option>
-					    </select>
-					  </div>
-					  <div className="form-group">
-					  	<label htmlFor="countryInput">Name</label>
-		        	<input type="text" id="countryInput" name="country" className="form-control" placeholder="Country" aria-label="Country" value={brand.country} onChange={onChangeForm}/>
-		        </div>
-		        <div className="from-group">
-		        	<label htmlFor="descriptionTextArea">Description</label>
-		        	<textarea name="description" id="descriptionTextArea" className="form-control" placeholder="Description" aria-label="Description" value={brand.description} onChange={onChangeForm}/>
-		      	</div>
-		      	<p style={errorStyle}>{error}</p>
-		      </div>
-		      <div className="modal-footer">
-		        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-		        <button type="button" className="btn btn-primary" onClick={addNewBrand}>Add</button>
-		      </div>
-		    </div>
-		  </div>
-		</div>
+	    { addNewBrandModal }
 	</div>
   )
 }

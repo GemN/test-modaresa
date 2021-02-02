@@ -46,6 +46,23 @@ export const Brands = (props) => {
     margin: '30px'
   }
 
+  const removeBrandModal = <div className="modal fade bd-example-modal-sm" id="removeBrandModal" tabIndex="-1" role="dialog" aria-labelledby="removeBrandModalLabel" aria-hidden="true">
+    <div className="modal-dialog modal-sm">
+      <div className="modal-content">
+        <div className="modal-header">
+          <h5 className="modal-title">Confirm delete ?</h5>
+          <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div className="modal-footer">
+          <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button id="remove-button" type="button" className="btn btn-danger">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   return (
     <main>
       <table style={tableStyle}>
@@ -82,22 +99,7 @@ export const Brands = (props) => {
         ))}
         </tbody>
       </table>
-      <div className="modal fade bd-example-modal-sm" id="removeBrandModal" tabIndex="-1" role="dialog" aria-labelledby="removeBrandModalLabel" aria-hidden="true">
-        <div className="modal-dialog modal-sm">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title">Confirm delete ?</h5>
-              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button id="remove-button" type="button" className="btn btn-danger">Confirm</button>
-            </div>
-          </div>
-        </div>
-      </div>
+      { removeBrandModal }
     </main>
   )
 }
