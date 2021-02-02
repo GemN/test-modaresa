@@ -3,7 +3,7 @@ Client:
 ```
   PORT=3001 npm start
 ```
-Server
+Server:
 ```
   npm start
 ```
