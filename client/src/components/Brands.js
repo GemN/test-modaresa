@@ -41,10 +41,6 @@ export const Brands = (props) => {
     }
   }
 
-  const setRemoveBrand = () => {
-    console.log('remove');
-  }
-
   const tableStyle = {
     width: '100%',
     margin: '30px'
