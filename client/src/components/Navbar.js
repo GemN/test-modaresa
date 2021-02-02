@@ -24,12 +24,13 @@ export const Navbar = () => {
       .then((result) => {
        	setBrand({
        		...brand,
-					name: '',
-					type: [],
-					country: '',
-					description: ''
-				});
-				$('#addNewBrandModal').modal('hide');
+			name: '',
+			type: [],
+			country: '',
+			description: ''
+		});
+		setError('');
+		$('#addNewBrandModal').modal('hide');
        	store.dispatch(loadBrands());
       })
       .catch((error) => {
@@ -91,11 +92,11 @@ export const Navbar = () => {
 		      <div className="modal-body">
 		        <div className="from-group">
 		        	<label htmlFor="nameInput">Name</label>
-		        	<input type="text" id="nameInput" name="name" className="form-control" placeholder="Name" aria-label="Name" onChange={onChangeForm}/>
+		        	<input type="text" id="nameInput" name="name" className="form-control" placeholder="Name" aria-label="Name" value={brand.name} onChange={onChangeForm}/>
 		        </div>
 		        <div className="form-group">
 					    <label htmlFor="typeSelect">Type</label>
-					    <select multiple className="form-control" id="typeSelect" name="type" onChange={onChangeForm}>
+					    <select multiple className="form-control" id="typeSelect" name="type" value={brand.type} onChange={onChangeForm}>
 					      <option>shoes</option>
 					      <option>clothes</option>
 					      <option>bags</option>
@@ -105,11 +106,11 @@ export const Navbar = () => {
 					  </div>
 					  <div className="form-group">
 					  	<label htmlFor="countryInput">Name</label>
-		        	<input type="text" id="countryInput" name="country" className="form-control" placeholder="Country" aria-label="Country" onChange={onChangeForm}/>
+		        	<input type="text" id="countryInput" name="country" className="form-control" placeholder="Country" aria-label="Country" value={brand.country} onChange={onChangeForm}/>
 		        </div>
 		        <div className="from-group">
 		        	<label htmlFor="descriptionTextArea">Description</label>
-		        	<textarea name="description" id="descriptionTextArea" className="form-control" placeholder="Description" aria-label="Description" onChange={onChangeForm}/>
+		        	<textarea name="description" id="descriptionTextArea" className="form-control" placeholder="Description" aria-label="Description" value={brand.description} onChange={onChangeForm}/>
 		      	</div>
 		      	<p style={errorStyle}>{error}</p>
 		      </div>
