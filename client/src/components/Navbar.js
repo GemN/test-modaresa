@@ -30,7 +30,7 @@ export const Navbar = () => {
       .catch((error) => {
       	console.log(error);
       })
-  }, [])
+	}, [])
 
 	const addNewBrand = () => {
 		axios.post("http://localhost:3000/brands", {
@@ -111,6 +111,7 @@ export const Navbar = () => {
 				  <div className="form-group">
 				  	<label htmlFor="countrySelect">Country</label>
 		    		<select className="form-control" id="countrySelect" name="country" value={brand.country} onChange={onChangeForm}>
+				      <option value="">Select Country</option>
 				      {countries.map(country => (
 				      	<option key={country.code}>{country.name}</option>
 				      	))}

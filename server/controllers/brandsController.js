@@ -1,6 +1,7 @@
 const db = require('../db/connection');
 const brands = db.get('brands');
 const countriesTools = require('../tools/countriesTools');
+const typesTools = require('../tools/typesTools');
 
 exports.get = function(req, res) {
 	brands.find().then((brands) => {
@@ -19,38 +20,39 @@ exports.create = function(req, res) {
 		country: req.body.country,
 		description: req.body.description
 	}
-	try {
-		if (!brand.name)
-		{
-			res.status(400);
-			res.send("Missing brand name.");
-		}
-		else if (!brand.type || brand.type.length === 0)
-		{
-			res.status(400);
-			res.send("Missing brand type (at least one is required).");
-		}
-		else if (!brand.country)
-		{
-			res.status(400);
-			res.send("Missing brand country.");
-		}
-		else if (!countriesTools.countryExist(brand.country))
-		{
-			res.status(400);
-			res.send("Country does not exist.");
-		}
-		else
-		{
-		    brands.insert(brand).then((brand) => {
-		        res.json(brand);
-		    }).catch((error) => {
-		        res.status(500);
-		        res.send(error);
-		    })
-		}
-	} catch (e) {
-		console.log(e);
+	if (!brand.name)
+	{
+		res.status(400);
+		res.send("Missing brand name.");
+	}
+	else if (!brand.type || brand.type.length === 0)
+	{
+		res.status(400);
+		res.send("Missing brand type (at least one is required).");
+	}
+	else if (!typesTools.typesMatch(brand.type))
+	{
+		res.status(400);
+		res.send("Brand types does not match.");
+	}
+	else if (!brand.country)
+	{
+		res.status(400);
+		res.send("Missing brand country.");
+	}
+	else if (!countriesTools.countryExist(brand.country))
+	{
+		res.status(400);
+		res.send("Country does not exist.");
+	}
+	else
+	{
+	    brands.insert(brand).then((brand) => {
+	        res.json(brand);
+	    }).catch((error) => {
+	        res.status(500);
+	        res.send(error);
+	    })
 	}
 }
 
