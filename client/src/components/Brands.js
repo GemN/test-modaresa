@@ -70,7 +70,7 @@ export const Brands = (props) => {
         <thead>
           <tr>
             <th>Name</th>
-            <th>Type</th>
+            <th>Types</th>
             <th>Country</th>
             <th>Description</th>
             <th>Action</th>
@@ -81,7 +81,7 @@ export const Brands = (props) => {
           <tr key={brand._id}>
             <td>{brand.name}</td>
             <td>
-              {brand.type.map(type => (
+              {brand.types.map(type => (
                 <span key={type}>{type} </span>
                 ))}
             </td>

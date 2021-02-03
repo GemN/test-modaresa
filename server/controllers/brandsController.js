@@ -16,7 +16,7 @@ exports.create = function(req, res) {
 	let brand = {
 		name: req.body.name,
 		createdAt: new Date,
-		type: req.body.type,
+		types: req.body.types,
 		country: req.body.country,
 		description: req.body.description
 	}
@@ -25,12 +25,12 @@ exports.create = function(req, res) {
 		res.status(400);
 		res.send("Missing brand name.");
 	}
-	else if (!brand.type || brand.type.length === 0)
+	else if (!brand.types || brand.types.length === 0)
 	{
 		res.status(400);
-		res.send("Missing brand type (at least one is required).");
+		res.send("Missing brand types (at least one is required).");
 	}
-	else if (!typesTools.typesMatch(brand.type))
+	else if (!typesTools.typesMatch(brand.types))
 	{
 		res.status(400);
 		res.send("Brand types does not match.");

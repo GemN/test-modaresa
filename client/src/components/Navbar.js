@@ -8,7 +8,7 @@ import { SERVER_URL } from '../global';
 export const Navbar = () => {
 	const [brand, setBrand] = useState({
 		name: '',
-		type: [],
+		types: [],
 		country: '',
 		description: ''
 	});
@@ -36,7 +36,7 @@ export const Navbar = () => {
 	const addNewBrand = () => {
 		axios.post(SERVER_URL + '/brands', {
 			name: brand.name,
-			type: brand.type,
+			types: brand.types,
 			country: brand.country,
 			description: brand.description
 		})
@@ -44,7 +44,7 @@ export const Navbar = () => {
      	setBrand({
        	...brand,
 				name: '',
-				type: [],
+				types: [],
 				country: '',
 				description: ''
 			});
@@ -64,10 +64,10 @@ export const Navbar = () => {
       	...brand,
       	name: e.target.value
       })
-    else if (e.target.name === 'type')
+    else if (e.target.name === 'types')
       setBrand({
       	...brand,
-      	type: Array.from(e.target.selectedOptions, option => option.value)
+      	types: Array.from(e.target.selectedOptions, option => option.value)
       })
     else if (e.target.name === 'country')
       setBrand({
@@ -102,8 +102,8 @@ export const Navbar = () => {
 	        	<input type="text" id="nameInput" name="name" className="form-control" placeholder="Name" aria-label="Name" value={brand.name} onChange={onChangeForm}/>
 	        </div>
 	        <div className="form-group">
-				    <label htmlFor="typeSelect">Type</label>
-				    <select multiple className="form-control" id="typeSelect" name="type" value={brand.type} onChange={onChangeForm}>
+				    <label htmlFor="typeSelect">Types</label>
+				    <select multiple className="form-control" id="typeSelect" name="types" value={brand.types} onChange={onChangeForm}>
 				      {types.map(type => (
 				      	<option key={type}>{type}</option>
 				      	))}
