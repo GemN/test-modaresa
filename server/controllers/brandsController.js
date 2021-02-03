@@ -5,11 +5,11 @@ const typesTools = require('../tools/typesTools');
 
 exports.get = function(req, res) {
 	brands.find().then((brands) => {
-        res.json(brands);
-    }).catch((error) => {
-    	res.status(500);
-    	res.send(error);
-    });
+    res.json(brands);
+  }).catch((error) => {
+  	res.status(500);
+  	res.send(error);
+  });
 }
 
 exports.create = function(req, res) {
@@ -47,12 +47,12 @@ exports.create = function(req, res) {
 	}
 	else
 	{
-	    brands.insert(brand).then((brand) => {
-	        res.json(brand);
-	    }).catch((error) => {
-	        res.status(500);
-	        res.send(error);
-	    })
+    brands.insert(brand).then((brand) => {
+        res.json(brand);
+    }).catch((error) => {
+        res.status(500);
+        res.send(error);
+    })
 	}
 }
 
@@ -67,10 +67,10 @@ exports.delete = function(req, res) {
 		brands.remove({
 			_id: brandId
 		}).then((result) => {
-	        res.json({});
-	    }).catch((error) => {
-	    	res.status(500);
-	    	res.send(error);
-	    });
+      res.json({});
+    }).catch((error) => {
+    	res.status(500);
+    	res.send(error);
+    });
 	}
 }
